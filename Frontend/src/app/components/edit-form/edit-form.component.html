@@ -1,0 +1,29 @@
+
+ <div class="container" *ngIf="identity" >
+   
+   
+    <form  class="containerForm"  #FormDeForm="ngForm" (ngSubmit)="onSubmit()" >
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+                {{alertMessage}}
+              </div>
+        </div>
+        <h2>Editar el caso</h2>
+        <p for="InputTitle">Titulo</p>
+        <input type="text" #title="ngModel" [(ngModel)]="form.title" class="form-control" name="title" size="15" maxlength="30" placeholder="Introduzca Titulo" required autofocus>
+        
+
+        <p for="exampleFormControlSelect1">Selecciona el nivel del formulario</p>
+        <select #level="ngModel" [(ngModel)]="form.level" class="form-control" name="level" required>
+            <option value="Fácil" >Fácil</option>
+            <option value="Medio">Medio</option>
+            <option value="Difícil">Difícil</option>
+        </select>
+        
+
+        <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+    </form>
+</div>
+<div *ngIf="!identity">
+    <p>No puedes acceder a esta parte</p>
+</div>

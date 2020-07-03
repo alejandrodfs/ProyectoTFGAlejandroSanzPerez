@@ -1,0 +1,46 @@
+<div *ngIf='identity' class="container">
+    <form  class="containerForm" #FormDeForm="ngForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+                {{alertMessage}}
+              </div>
+        </div>
+        <h4 >{{question.title}}</h4>
+        <h4 >{{question.description}}</h4>
+        <h4 >{{question.text}}</h4>
+    <p for="InputTitle"><b>Introduce las respuestas:</b></p>
+    <input type="text"  #respuesta1="ngModel" [(ngModel)]="answer1.text" class="form-control" name="text" size="15" maxlength="60" placeholder="Introduzca la respuesta 1" required autofocus>
+    <p><b>Introduce su feedback</b></p>
+    <textarea class="form-control" name="fail1" #fail1="ngModel" value="answer1.fail" [(ngModel)]="answer1.fail" id="fail1" rows="3" cols="88"></textarea>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="respuestaFinal1" #respuestaFinal="ngModel" [(ngModel)]="answer1.finalQuestion" id="finalAnswer1">
+        <label class="form-check-label" style="margin-left: 4%;" for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text"  #respuesta2="ngModel" [(ngModel)]="answer2.text" class="form-control" name="text" size="15" maxlength="60" placeholder="Introduzca la respuesta 2" required >
+    <p ><b>Introduce su feedback</b></p>
+    <textarea class="form-control" name="fail2" #fail2="ngModel" value="answer2.fail" [(ngModel)]="answer2.fail" id="fail2" rows="3" cols="88"></textarea>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="respuestaFinal2"  #respuestaFinal2="ngModel" [(ngModel)]="answer2.finalQuestion" id="finalAnswer2">
+        <label class="form-check-label" style="margin-left: 4%;" for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text" #respuesta3="ngModel" [(ngModel)]="answer3.text" class="form-control" name="text" size="15" maxlength="60" placeholder="Introduzca la respuesta 3" required >
+    <p><b>Introduce su feedback</b></p>
+    <textarea  class="form-control" name="fail3" #fail3="ngModel" value="answer3.fail" [(ngModel)]="answer3.fail" id="fail3" rows="3" cols="88"></textarea>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="respuestaFinal3"  #respuestaFinal3="ngModel" [(ngModel)]="answer3.finalQuestion" id="finalAnswer3">
+        <label class="form-check-label" style="margin-left: 4%;" for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text"  #respuesta4="ngModel" [(ngModel)]="answer4.text" class="form-control" name="text" size="15" maxlength="60" placeholder="Introduzca la respuesta 4" required >
+    <p> <b>Introduce su feedback</b></p>
+    <textarea class="form-control" name="fail4" #fail4="ngModel" value="answer4.fail" [(ngModel)]="answer4.fail" id="fail4" rows="3" cols="88"></textarea>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="respuestaFinal4"  #respuestaFinal4="ngModel" [(ngModel)]="answer4.finalQuestion" id="finalAnswer4">
+        <label class="form-check-label" style="margin-left: 4%;" for="materialUnchecked">Respuesta final</label>
+    </div>
+
+    <input type="submit" value="Guardar respuestas" class="btn btn-primary"/>
+    </form>
+</div>
+<div *ngIf='!identity'> No puedes acceder a esta parte</div>
+    
+    

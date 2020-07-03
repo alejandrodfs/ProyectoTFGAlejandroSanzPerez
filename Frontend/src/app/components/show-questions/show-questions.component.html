@@ -1,0 +1,137 @@
+
+<div class="container" *ngIf='(identity) && (graficos== false)'>
+  <div class="containerForm">
+<h2>Listado de preguntas del formulario: {{form.title}} </h2>
+    <div *ngIf="alertMessage">
+        <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+            {{alertMessage}}
+          </div>
+    </div>
+    <div class="seguro" *ngIf="confirmado == form._id" style="margin-top: 2%">
+      <p>¿Estas seguro de elimarlo?</p>
+    </div>
+      <div *ngIf="(confirmado != form._id ) && (identity)">
+        <input style="margin-top: 5%;margin-right: 2%;" type="submit" value="Editar" [routerLink]="['/edit-form',form._id]" class="btn btn-warning" />
+        <input style="margin-top: 5%" type="submit" value="Borrar" (click)="OnDeleteConfirm(form._id)"  class="btn btn-danger" />
+        <input style="margin-top: 5%; float: right;" type="submit" value="Estadisticas" class="btn btn-info" (click)="ChangeToStats()" />
+      </div>
+    <div class="seguro" *ngIf="confirmado == form._id">
+        <a (click)="onDeleteForm(form._id)" class="btn btn-danger" style="margin-right: 2%;"> Eliminar </a>
+        <a (click)="onCancelForm()" class="btn btn-primary">Cancelar</a>
+    </div>
+<div *ngIf="numQuestions==0 && pageControl==1">
+      <div class="alert alert-info" role="alert" style="width: 50%; text-align: center; margin-left: 20%; margin-top: 8%; font-size: 150%;">
+        No tiene preguntas en este formulario
+      </div>
+  </div>
+  <div style="margin-top: 2%"*ngIf="numQuestions==0 && pageControl>1 ">
+    <div class="alert alert-info" role="alert" style="width: 50%; text-align: center; margin-left: 20%; margin-top: 8%; font-size: 150%;">
+      No tiene más páginas con preguntas
+    </div>
+  </div>
+  
+<div class="box" style="margin-top: 5%; margin-left: 7%;" id="list-questions" *ngIf="questions">
+    <ul class="list-group list-group-horizontal-lg">
+        <li *ngFor="let question of questions" class="list-group-item">  
+            <input *ngIf="question._id!=''"style="margin-top: 5%" type="submit" value="{{question.title}}" class="btn btn-primary" [routerLink]="['/show-question',question._id]"/> 
+        </li>
+      </ul>
+</div>
+<div *ngIf='identity'>
+<input style="margin-top: 5%;" type="submit" value="Añadir nueva pregunta" [routerLink]="['/create-question',form._id]" class="btn btn-primary" />
+</div>
+<ul class="pager" style="margin-top: 5%;">
+  <li class="previous"><a [routerLink]="['/show-questions',prevpage]">&larr; Anterior</a></li>
+  <li><a style="text-align: center;">Pagina {{this.pageControl}}</a></li>
+  <li class="next"><a [routerLink]="['/show-questions',nextpage]">Siguiente &rarr;</a></li>
+</ul>
+</div>
+</div>
+
+
+
+<div class="container" *ngIf='(identity) && (graficos== true)'>
+  <div class="containerForm">
+  <div>
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div>
+  <input style="float: right;margin-top: 2%;" type="submit" value="Volver atras" class="btn btn-primary" (click)=ChangeToQuestions() />
+  </div> 
+  <div style="margin-top: 10%;">
+    <div *ngIf='this.questions.length'>
+    <p>Pregunta {{this.questions[0].title}} :</p>
+    <ul class="list-group  list-group-horizontal-lg">
+      <li *ngFor="let answer1 of answers1charts" class="list-group-item">  
+          <p>La respuesta {{answer1.text}} tiene <b>{{answer1.numselect}}</b> selecciones</p>    
+            
+      </li>
+    </ul>
+    </div>
+    <div *ngIf='this.questions[1]'>
+    <p>Pregunta {{this.questions[1].title}} :</p>
+    <ul class="list-group list-group-horizontal-lg">
+      <li *ngFor="let answer2 of answers2charts" class="list-group-item">  
+        <p>La respuesta {{answer2.text}} tiene <b>{{answer2.numselect}}</b> selecciones</p>    
+          
+    </li>
+    </ul>
+    </div>
+    <div *ngIf='this.questions[2]'>
+    <p>Pregunta {{this.questions[2].title}} :</p>
+    <ul class="list-group list-group-horizontal-lg">
+      <li *ngFor="let answer3 of answers3charts" class="list-group-item">  
+        <p>La respuesta {{answer3.text}} tiene <b>{{answer3.numselect}}</b> selecciones</p>    
+         
+    </li>
+    </ul>
+    </div>
+    <div *ngIf='this.questions[3]'>
+    <p>Pregunta {{this.questions[3].title}} :</p>
+    <ul class="list-group list-group-horizontal-lg">
+      <li *ngFor="let answer4 of answers4charts" class="list-group-item">  
+        <p>La respuesta {{answer4.text}} tiene <b>{{answer4.numselect}}</b> selecciones</p>    
+  
+    </li>
+    </ul>
+    </div>
+  </div> 
+  <ul class="pager" style="margin-top: 10%;">
+    <li><a style="text-align: center;">Pagina {{this.pageControl}}</a></li>
+  </ul>
+</div>
+</div>
+
+
+
+<div class="container" *ngIf='!identity'>
+  <form class="containerForm" formQuestionUser="ngForm" (ngSubmit)="onSubmit()">
+    <div  *ngIf="firstQuestion.image && firstQuestion.image != 'null'">
+      <img class="centrado" src = "{{url + 'get-image/'+firstQuestion.image}}"  style="width: 40%;"/>
+    </div>
+    <p *ngIf="firstQuestion.urlVideo">
+      <iframe class="centrado" width="80%" height="315" [src]="getVideoIframe(firstQuestion.urlVideo)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </p>
+    <h4>{{firstQuestion.description}}</h4>
+    <h4>{{firstQuestion.text}}</h4>
+  <div style="margin-top: 4%; margin-left: 5%; " *ngFor="let answer of answers">
+    <p for="selectedanswer">
+      <input id="answerSelected{{answer.text}}" [value]="answer.text" type="radio" name="select" [(ngModel)]="answerSelected" (change)="capture(answer)">
+      {{answer.text}}
+    </p>
+  </div>
+  <div style="margin-top: 3%;"><button type="submit" class="btn btn-primary" >Enviar</button></div>
+</form> 
+
+</div>

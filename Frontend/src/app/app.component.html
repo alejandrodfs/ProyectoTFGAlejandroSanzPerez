@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<nav class="navbar navbar-default">
+  
+  <div class= "container">
+    <div>
+  </div>
+  <img src="/assets/images/logo_uva.jpg" style="width: 5%; margin-right: 2%;"/>
+    <div class="navbar-header" style="margin-right: 20%; float: left">
+      
+        <a class="navbar-brand " href=""> Casos clínicos Óptica y Optometría – Universidad de Valladolid</a>
+    </div> 
+    <div *ngIf="!identity" class="nav navbar-nav  ml-auto" style="margin-right: -5%;">
+      <a class="navbar-item nav-link" [routerLink]="['contact-form']" style="font-size: 150%;"> Contacto</a>
+    </div>
+    <div *ngIf="!identity" class=" nav navbar-nav navbar-right ml-auto">
+      <a class="navbar-brand " routerLink="login" style="font-size: 150%;"> Login</a>
+    </div> 
+    <div *ngIf="identity" class="nav navbar-nav  ml-auto" >
+      <a class="navbar-item nav-link" [routerLink]="['register']" style="font-size: 150%;"> Registro / Eliminación</a>
+    </div> 
+    <div *ngIf="identity" class=" nav navbar-nav navbar-right ml-auto" >
+      <a class="navbar-item nav-link active" (click)="logout()" style="font-size: 150%;"> Logout</a>
+    </div> 
+    <img src="/assets/images/Ojo.png" style="width: 4%; margin-left: 2%;"/>
+  </div>
+
+</nav>
+<body>
+ 
+<router-outlet></router-outlet>
+</body>
+
+

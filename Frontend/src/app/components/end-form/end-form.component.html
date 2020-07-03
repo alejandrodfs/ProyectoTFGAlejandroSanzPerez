@@ -1,0 +1,21 @@
+<div class="container">
+
+<div *ngIf="!idQuestion && !idAnswer">
+  <img class="centrado" src="../../../assets/images/tenor.gif"/>
+    <div class="alert alert-success" role="alert">
+       <p> Enhorabuena has acabado el formulario </p>
+      </div>
+
+
+<div><button type="submit" class="btn btn-primary" [routerLink]="['/show-forms/1']">Volver al inicio</button></div>
+</div>
+<form formQuestionUser="ngForm" (ngSubmit)="onSubmit()">
+<div *ngIf="idQuestion && idAnswer ">
+    <div class="alert alert-danger" role="alert">
+        <p>{{answer.fail}}</p>
+      </div>
+    <div><button type="submit" class="btn btn-primary" >Volver a la pregunta anterior</button></div>
+</div>
+</form>
+
+</div>

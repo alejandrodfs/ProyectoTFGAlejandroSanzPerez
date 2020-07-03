@@ -1,0 +1,21 @@
+<div class="container" *ngIf='!identity'>
+
+<form class="containerForm" formQuestionUser="ngForm" (ngSubmit)="onSubmit()">
+  <div class="image" *ngIf="question.image && question.image != 'null'">
+    <img class="centrado" src = "{{url + 'get-image/'+question.image}}"/>
+  </div>
+  <p *ngIf="question.urlVideo">
+    <iframe class="centrado"  height="315" [src]="getVideoIframe(question.urlVideo)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </p>
+  <h4>{{question.description}}</h4> 
+  <h4>{{question.text}}</h4>  
+<div id="respuestas"  *ngFor="let answer of answers">
+    <p for="selectedanswer">
+      <input id="answerSelected{{answer.text}}" [value]="answer.text" type="radio" name="select" [(ngModel)]="answerSelected" (change)="capture(answer)">
+      {{answer.text}}
+    </p>
+  </div>
+  <div><button type="submit" class="btn btn-primary" >Enviar</button></div>
+</form>
+
+</div>

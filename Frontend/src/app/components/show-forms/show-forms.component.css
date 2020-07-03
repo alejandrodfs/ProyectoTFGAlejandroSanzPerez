@@ -1,0 +1,36 @@
+
+
+.container .containerLevel .list-group .list-group-item {
+    border: 0 none;
+}
+div.container{
+   background-image: url(../../../assets/images/Fondo3.jpeg);
+   background-size: cover;
+    border : 1px solid #E1E1E1;
+    border-radius: 5px;
+    width: 70%;
+    color:white;
+}
+li.list-group-item{
+    background: none;
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    margin-top: 5%;
+}
+
+ul{
+    
+    margin-top: 3%;
+}
+.pager{
+    margin-top: 2%;
+}
+.list-group{
+    margin-left: 15%;
+}

@@ -1,0 +1,77 @@
+
+
+<div class="container">
+<form class="containerForm" *ngIf='identity' #FormDeForm="ngForm" (ngSubmit)="onSubmit()" >
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+        {{alertMessage}}
+      </div>
+ </div>
+    <h2>Editar pregunta</h2>
+    <p for="InputTitle">Titulo</p>
+    <input type="text" #title="ngModel" [(ngModel)]="question.title" class="form-control" name="title" size="15" maxlength="30" placeholder="Introduzca Titulo" required autofocus>
+    <p for="InputFormulario">Descripcion de la pregunta</p>
+    <textarea  class="form-control" name="description" #description="ngModel" value="question.description" [(ngModel)]="question.description" id="description" rows="5" cols="88"></textarea>
+    <span *ngIf= "!description.valid && description.touched"> La descripcion es obligatoria</span>
+    <div class="image" *ngIf="question.image && question.image != 'null'">
+      <img src = "{{url + 'get-image/'+question.image}}"  />
+    </div>
+    <div>
+        <p>Sube tu foto:</p>
+        <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)"/>
+    </div>
+    <p >Link del video</p>
+      <input type="text" class="form-control" #link="ngModel" [(ngModel)]="question.urlVideo"  name="urlVideo" size="15" maxlength="100" placeholder="Introduzca el link del video">
+    <p  for="InputFormulario">Pregunta del Formulario</p>
+    <input type="text" class="form-control" #textquestion="ngModel" [(ngModel)]="question.text"  name="textquestion" size="15" maxlength="30" placeholder="Pregunta formulario">
+    <div *ngIf = 'question.questionBefore!="" && question.answerBefore!="" '>
+      <div class="alert alert-info" role="alert">
+        Sino desea cambiar ni la pregunta anterior ni la respuesta de la pregunta anterior, no escoja ninguna opcion
+      </div>
+       <p for="exampleFormControlSelect1">Seleccion de la pregunta anterior</p>
+            <select  class="form-control" name="opcionSeleccionado" #opcionseleccionada="ngModel" [(ngModel)]="opcionSeleccionado" (change)="capturarQuestion()">
+              <option [ngValue]="question" *ngFor="let question of questions">{{question.title}}</option>
+            </select>
+            <span>La pregunta escogida anteriormente es: {{questionSelectedBefore.title}}</span><br>
+      <p for="exampleFormControlSelect2">Seleccion de la respuesta de la pregunta anterior</p>
+            <select class="form-control" id="exampleFormControlSelect2" name="opcionSeleccionado" #opcionseleccionada2="ngModel" [(ngModel)]="opcionSeleccionadoAnswer" (change)="capturarAnswer()">
+                <option [ngValue]="answer" *ngFor="let answer of answers">{{answer.text}}</option>
+            </select>
+            <span>La respuesta escogida anteriormente es: {{answerSelectedBefore.text}}</span>
+    </div>
+    <div>
+    <p for="InputTitle">Introduce las respuestas</p>
+    <input type="text" #respuesta1="ngModel" [(ngModel)]="answer1.text" class="form-control" name="text1" size="15" maxlength="30" placeholder="Introduzca la respuesta" required>
+    <p>Feedback: </p>
+    <textarea  class="form-control" name="fail1" #fail="ngModel" value="answer1.fail" [(ngModel)]="answer1.fail" id="fail1" rows="3" cols="88"></textarea>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="respuestaFinal1"  #respuestaFinal1="ngModel" [(ngModel)]="answer1.finalQuestion" id="finalAnswer1">
+      <label class="form-check-label" for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text" #respuesta2="ngModel" [(ngModel)]="answer2.text" class="form-control" name="text2" size="15" maxlength="30" placeholder="Introduzca la respuesta" required >
+    <p>Feedback: </p>
+    <textarea  class="form-control" name="fail2" #fail2="ngModel" value="answer2.fail" [(ngModel)]="answer2.fail" id="fail2" rows="3" cols="88"></textarea>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="respuestaFinal2"  #respuestaFinal2="ngModel" [(ngModel)]="answer2.finalQuestion" id="finalAnswer2">
+      <label class="form-check-label"  for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text"  #respuesta3="ngModel" [(ngModel)]="answer3.text" class="form-control" name="text3" size="15" maxlength="30" placeholder="Introduzca la respuesta" required >
+    <p>Feedback: </p>
+    <textarea  class="form-control" name="fail3" #fail3="ngModel" value="answer3.fail" [(ngModel)]="answer3.fail" id="fail3" rows="3" cols="88"></textarea>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="respuestaFinal3"  #respuestaFinal3="ngModel" [(ngModel)]="answer3.finalQuestion" id="finalAnswer3">
+      <label class="form-check-label" for="materialUnchecked">Respuesta final</label>
+    </div>
+    <input type="text" #respuesta4="ngModel" [(ngModel)]="answer4.text" class="form-control" name="text4" size="15" maxlength="30" placeholder="Introduzca la respuesta" required >
+    <p>Feedback: </p>
+    <textarea  class="form-control" name="fail4" #fail4="ngModel" value="answer4.fail" [(ngModel)]="answer4.fail" id="fail4" rows="3" cols="88"></textarea>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="respuestaFinal4"  #respuestaFinal4="ngModel" [(ngModel)]="answer4.finalQuestion" id="finalAnswer4">
+      <label class="form-check-label" for="materialUnchecked">Respuesta final</label>
+    </div>
+    </div>   
+    <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+</form>
+</div>
+
+<div *ngIf='!identity'> No puedes acceder a esta parte</div>

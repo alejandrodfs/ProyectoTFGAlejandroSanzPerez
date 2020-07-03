@@ -1,0 +1,34 @@
+.containerForm{
+    border : 1px solid #E1E1E1;
+    border-radius: 5px;
+    padding : 17px;
+    width: 70%;
+    position: absolute;
+}
+.container{
+    margin :0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 70%;
+    left:70%;
+    transform: translate(-60%, 60%);
+}
+.container .containerForm .box .list-group .list-group-item{
+    border: 0 none;
+}
+
+.centrado{
+    margin:10px auto;
+    display:block;
+}
+
+p{
+    font-size:medium;
+}
+
+#MensajeDeAlerta{
+    font-size: medium;
+    text-align: center;
+}

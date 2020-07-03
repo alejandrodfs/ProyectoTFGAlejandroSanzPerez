@@ -1,0 +1,21 @@
+div.container{
+     border : 1px solid #E1E1E1;
+     border-radius: 5px;
+     width: 50%;
+     color:white;
+ }
+ .centrado{
+    margin:10px auto;
+    display:block;
+}
+img{
+    width: 50%;
+}
+p{
+    font-size: 150%;
+    text-align: center;
+    font-size: medium;
+}
+div{
+    margin-top: 3%;
+}

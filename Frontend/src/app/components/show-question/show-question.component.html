@@ -1,0 +1,28 @@
+
+<div class="container" *ngIf='identity'>
+<div class="containerForm">
+<h3 style="text-align: center;">{{question.title}}</h3>
+<h3 style="text-align: center;">{{question.description}}</h3>
+<h3 style="text-align: center;">{{question.text}}</h3>
+
+
+<div class="seguro" *ngIf="confirmado == question._id">
+    <p>¿Estas seguro de elimarlo?</p>
+  </div>
+<div *ngIf="confirmado != question._id">
+<input *ngIf="add_res" style="margin-right: 5%;" type="submit" value="Editar pregunta" class="btn btn-primary" [routerLink]="['/edit-question-answers',question._id]"/>
+<input *ngIf="!add_res"  type="submit" value="Añadir respuestas" class="btn btn-primary" [routerLink]="['/create-answer',question._id]"/>
+<input  *ngIf="(this.question.questionBefore!='') && (this.question.answerBefore!='') " style="margin-left: 2%;" type="submit" value="Borrar" (click)="OnDeleteConfirm(question._id)" class="btn btn-danger" />
+<input style="float: right;" type="submit" value="Volver atras" class="btn btn-primary" [routerLink]="['/show-questions',formBefore]"/>
+
+</div>
+<div class="seguro" *ngIf="confirmado == question._id">
+    <a (click)="onDeleteQuestion(question._id)" class="btn btn-danger"> Eliminar </a>
+    <a (click)="onCancelquestion()" class="btn btn-primary">Cancelar</a>
+</div>
+</div>
+</div>
+ <div *ngIf='!identity' >
+ No puedes acceder
+ </div>
+

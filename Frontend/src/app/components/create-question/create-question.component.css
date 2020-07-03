@@ -1,0 +1,27 @@
+.containerForm{
+    border : 1px solid #E1E1E1;
+    border-radius: 5px;
+    padding : 17px;
+    width: 60%;
+    position: absolute;
+    margin-left: 15%; 
+    margin-right: 15%;
+}
+.container{
+    margin :0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 60%;
+    left:60%;
+    transform: translate(-60%, -60%);
+}
+
+p, button{
+    margin-top: 3%;
+}
+#MensajeDeAlerta{
+    font-size: medium;
+    text-align: center;
+}

@@ -1,0 +1,36 @@
+.containerForm{
+    border : 1px solid #E1E1E1;
+    border-radius: 5px;
+    padding : 17px;
+    width: 50%;
+    position: absolute;
+}
+.container{
+    margin :0;
+    padding: 0;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    top: 60%;
+    left:60%;
+    transform: translate(-90%, -90%);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+}
+
+#MensajeDeAlerta{
+    font-size: medium;
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+p{
+    margin-top: 3%;
+}
+
+input[type="submit"]{
+    margin-top: 4%;
+}

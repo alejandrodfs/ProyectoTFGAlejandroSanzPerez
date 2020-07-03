@@ -1,0 +1,37 @@
+
+ <div *ngIf='identity' class="container" >
+    
+    <form class="containerForm" #registerForm="ngForm"(ngSubmit)="onSubmitRegister()" >
+        <div *ngIf="Message">
+            <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+                {{Message}}
+              </div>
+        </div>
+        <h3>Registrar nuevo usuario administrador</h3>
+        <p for="InputTitle" >Email</p>
+        <div class="form-group">
+            <input type="email" #email= "ngModel" [(ngModel)]="user.email" class="form-control" name="email" size="20" maxlength="60" placeholder="Introduzca el email" required autofocus>
+        </div>
+        <p for="InputTitle">Contraseña</p>
+        <div class="form-group">
+            <input type="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" name="password" size="20" maxlength="60" placeholder="Introduzca la contraseña" required>
+        </div>
+        <div><button type="submit" class="btn btn-primary">Registrar</button></div>
+    </form>
+    <form id = "formDelete" class="containerForm" #deleteForm="ngForm"(ngSubmit)="onSubmitDelete()">
+        <div *ngIf="MessageDelete">
+            <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+                {{MessageDelete}}
+              </div>
+        </div>
+        <h3>Elimina un usuario administrador</h3>
+        <p for="exampleFormControlSelect">Seleccion el usuario administrador que desee eliminar</p>
+                <select class="form-control" id="exampleFormControlSelect" name="opcionSeleccionado" #opcionseleccionada="ngModel" [(ngModel)]="opcionSeleccionada" (change)="capture()">
+                  <option [ngValue]="user" *ngFor="let user of users">{{user.email}}</option>
+                </select>
+        <div ><button type="submit" class="btn btn-primary">Eliminar</button></div>
+    </form >
+
+</div>
+<div *ngIf='!identity'> No puedes acceder a esta parte</div>
+

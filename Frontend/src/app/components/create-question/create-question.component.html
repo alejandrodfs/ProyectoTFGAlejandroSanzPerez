@@ -1,0 +1,45 @@
+
+<div class="container">
+<form  class="containerForm" *ngIf="identity"  #formQuestion="ngForm" (ngSubmit)="onSubmit()">
+    <h2>Crea una pregunta nueva en el formulario : {{form.title}} </h2>
+    <div *ngIf="alertMessage">
+        <div class="alert alert-info" role="alert" id="MensajeDeAlerta">
+            {{alertMessage}}
+          </div>
+    </div>
+    <div>
+    </div>
+      <p >Titulo</p>
+      <input type="text" class="form-control" #title="ngModel" [(ngModel)]="question.title"  name="title" size="15" maxlength="50" placeholder="Introduzca Titulo">
+      <span *ngIf= "!title.valid && title.touched"> El titulo es obligatorio</span>
+      <p for="InputFormulario" >Descripcion de la pregunta</p>
+      <textarea  class="form-control" name="description" #description="ngModel" [(ngModel)]="question.description" id="description" rows="5" cols="88"></textarea>
+      <span *ngIf= "!description.valid && description.touched"> La descripcion es obligatoria</span>
+      <div>
+          <p>Sube tu foto:</p>
+          <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)"/>
+          
+      </div>
+      <p>Link del video</p>
+      <input type="text" class="form-control" #link="ngModel" [(ngModel)]="question.urlVideo"  name="urlVideo" size="15" maxlength="100" placeholder="Introduzca el link del video">
+      <p for="InputFormulario" >Pregunta del Formulario</p>
+      <input type="text" class="form-control" #text="ngModel" [(ngModel)]="question.text"  name="text" size="15" maxlength="100" placeholder="Pregunta formulario">
+      <span *ngIf= "!text.valid && text.touched"> La pregunta es obligatoria</span>
+
+      <div *ngIf="!morequestions">
+      <p for="exampleFormControlSelect1">Seleccion de la pregunta anterior</p>
+            <select  class="form-control" name="opcionSeleccionado" #opcionseleccionada="ngModel" [(ngModel)]="opcionSeleccionado" (change)="capturarQuestion()">
+              <option [ngValue]="question" *ngFor="let question of questions">{{question.title}}</option>
+            </select>
+        <p for="exampleFormControlSelect2">Seleccion de la respuesta de la pregunta anterior</p>
+                <select class="form-control" id="exampleFormControlSelect2" name="opcionSeleccionado2" #opcionseleccionada2="ngModel" [(ngModel)]="opcionSeleccionadoAnswer" (change)="capturarAnswer()">
+                  <option [ngValue]="answer" *ngFor="let answer of answers">{{answer.text}}</option>
+                </select>
+      </div>
+    <div><button type="submit" class="btn btn-primary" >Guardar pregunta</button></div>
+    
+</form>
+</div>
+<div *ngIf="!identity">
+    <p>No puedes acceder a esta parte</p>
+</div>
